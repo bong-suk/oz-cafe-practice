@@ -2,8 +2,8 @@ import { useState } from "react";
 import data from "../assets/data";
 import { useCart } from "../context/cartContext";
 
-function OrderModal({ modalMenu, setModalOn, cart, setCart }) {
-  const { cart, setCart } = useCart();
+function OrderModal({ modalMenu, setModalOn }) {
+  const { addToCart } = useCart();
 
   const [options, setOptions] = useState({ 온도: 0, 진하기: 0, 사이즈: 0 });
   const [quantity, setQuantity] = useState(1);
@@ -45,7 +45,7 @@ function OrderModal({ modalMenu, setModalOn, cart, setCart }) {
               </div>
               <button
                 onClick={() => {
-                  setCart([...cart, { options, quantity, id: modalMenu.id }]);
+                  addToCart(quantity, options, modalMenu.id);
                   setModalOn(false);
                 }}
               >
